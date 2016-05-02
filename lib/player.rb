@@ -12,13 +12,13 @@ class Player
   end
 
   def place_ships(num_ships)
-    num_ships.times do |i|
-      position = 0
-      loop do
-        position = ge.get_ship_coords(num_ships+i)
-        break if board.valid_coords?(position)
-      end
-      ships[position] = Ship.new
-    end
+    # num_ships.times do |i|
+    #   position = 0
+    #   loop do
+    #     position = ge.get_ship_coords(num_ships+i)
+    #     break if board.valid_coords?(position)
+    #   end
+    #   ships[position] = Ship.new
+    # end
   end
 end
