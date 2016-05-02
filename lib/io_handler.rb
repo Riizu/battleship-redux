@@ -1,11 +1,19 @@
 class IOHandler
   def display_welcome_message
     puts "Welcome to BATTLESHIP\n"
-    print "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
   end
 
   def prompt
-    print "\n> "
-    gets.chomp
+    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n"
+    print "> "
+  end
+
+  def get_repl_input
+    prompt
+    gets.chomp[0].capitalize
+  end
+
+  def display_message(string)
+    puts "#{string}\n\n"
   end
 end

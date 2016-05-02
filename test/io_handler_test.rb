@@ -14,4 +14,9 @@ class IOHandlerTest < Minitest::Test
     result = capture_io {@io_handler.display_welcome_message}
     assert result
   end
+
+  def test_it_can_display_a_message
+    result = capture_io {@io_handler.display_message("test")}
+    assert result
+  end
 end

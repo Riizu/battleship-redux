@@ -11,7 +11,7 @@ class StateMachineTest < Minitest::Test
   end
 
   def test_it_has_a_current_state
-    assert_equal :stop_state, @sm.current_state
+    assert_equal :start_state, @sm.current_state
   end
 
   def test_it_can_switch_states
