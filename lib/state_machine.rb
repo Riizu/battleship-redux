@@ -2,8 +2,8 @@ class StateMachine
   attr_reader :current_state
 
   def initialize
-    @current_state = :start_state
-    @valid_states = [:start_state, :instructions_state,
+    @current_state = :menu_state
+    @valid_states = [:menu_state, :instructions_state,
                      :game_state, :quit_state]
   end
 

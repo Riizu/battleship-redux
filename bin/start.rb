@@ -18,6 +18,7 @@ while sm.current_state != :quit_state
   when "I"
     sm.set_state(:instructions_state)
     io.display_message(InstructionsHandler.instructions)
+    sm.set_state(:menu_state)
   when "Q"
     sm.set_state(:quit_state)
   end
