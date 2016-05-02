@@ -1,0 +1,36 @@
+require_relative 'test_helper'
+require_relative '../lib/game_engine'
+
+class GameEngineTest < Minitest::Test
+  def setup
+    @ge = GameEngine.new
+  end
+
+  def test_it_exists
+    assert @ge
+  end
+
+  def test_it_has_a_player_one
+    assert @ge.player_1
+  end
+
+  def test_it_has_a_player_two
+    assert @ge.player_2
+  end
+
+  def test_its_player_one_is_a_player_by_default
+    assert_kind_of Player, @ge.player_1
+  end
+
+  def test_its_player_two_is_an_AI_by_default
+    assert_kind_of AI, @ge.player_2
+  end
+
+  def test_it_is_not_running_by_default
+    refute @ge.running?
+  end
+
+  def test_it_can_run_a_game
+    assert_equal nil, @ge.run
+  end
+end

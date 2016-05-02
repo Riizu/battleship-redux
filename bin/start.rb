@@ -1,6 +1,7 @@
 require_relative '../lib/state_machine'
 require_relative '../lib/io_handler'
 require_relative '../lib/instructions_handler'
+require_relative '../lib/game_engine'
 
 include InstructionsHandler
 
@@ -15,6 +16,8 @@ while sm.current_state != :quit_state
   case prompt
   when "P"
     sm.set_state(:game_state)
+    game = GameEngine.new
+    game.start
   when "I"
     sm.set_state(:instructions_state)
     io.display_message(InstructionsHandler.instructions)
