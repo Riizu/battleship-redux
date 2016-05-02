@@ -16,4 +16,9 @@ class IOHandler
   def display_message(string)
     puts "#{string}\n\n"
   end
+
+  def get_ship_coords(size)
+    puts "Enter the squares for the #{size}-unit ship: "
+    gets.chomp
+  end
 end

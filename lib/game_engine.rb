@@ -4,9 +4,10 @@ require_relative '../lib/ai'
 class GameEngine
   attr_reader :player_1, :player_2
 
-  def initialize
-    @player_1 = Player.new
-    @player_2 = AI.new
+  def initialize(io_handler)
+    @io = io_handler
+    @player_1 = Player.new(self)
+    @player_2 = AI.new(self)
     @running = false
   end
 
@@ -30,5 +31,9 @@ class GameEngine
       #check win
       @running = false
     end
+  end
+
+  def get_ship_coords(size)
+    @io.get_ship_coords(size)
   end
 end

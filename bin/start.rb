@@ -16,7 +16,7 @@ while sm.current_state != :quit_state
   case prompt
   when "P"
     sm.set_state(:game_state)
-    game = GameEngine.new
+    game = GameEngine.new(io)
     game.start
   when "I"
     sm.set_state(:instructions_state)

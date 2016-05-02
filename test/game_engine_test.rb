@@ -1,9 +1,11 @@
 require_relative 'test_helper'
 require_relative '../lib/game_engine'
+require_relative '../lib/io_handler'
 
 class GameEngineTest < Minitest::Test
   def setup
-    @ge = GameEngine.new
+    @io = IOHandler.new
+    @ge = GameEngine.new(@io)
   end
 
   def test_it_exists
