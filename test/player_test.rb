@@ -63,4 +63,19 @@ class PlayerTest < Minitest::Test
     assert_kind_of Ship, @player.ship_board.grid[0][1]
     assert_kind_of Ship, @player.ship_board.grid[0][2]
   end
+
+  def test_it_can_fire_a_shot
+    @player.set_opponent(Player.new(@ge))
+
+    result = @player.fire_shot([0,0])
+
+    assert_equal 1, @player.num_shots
+    assert_equal :miss, result
+  end
+
+  def test_it_can_update_itself
+    @player.update_self([0,0], "H")
+
+    assert_equal "H", @player.guess_board.grid[0][0]
+  end
 end
