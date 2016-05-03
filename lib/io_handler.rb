@@ -1,6 +1,8 @@
 class IOHandler
   def display_welcome_message
-    puts "Welcome to BATTLESHIP\n"
+    puts "========================="
+    puts "| Welcome to BATTLESHIP |\n"
+    puts "========================="
   end
 
   def prompt
