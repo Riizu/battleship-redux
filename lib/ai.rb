@@ -16,7 +16,6 @@ class AI < Player
       get_shot_position
     else
       @previous_shot_positions << result
-      puts @previous_shot_positions.to_s
       result
     end
   end

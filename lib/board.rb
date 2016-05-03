@@ -16,7 +16,7 @@ class Board
 
   def set_position(position, value)
     if grid[position[0]][position[1]] == "~" || \
-      grid[position[0]][position[1]] == "S"
+      grid[position[0]][position[1]].class == Ship
 
       grid[position[0]][position[1]] = value
     end
@@ -27,7 +27,14 @@ class Board
   end
 
   def find(value)
-    grid.any? { |row| row.include? "S" }
+    if value == Ship
+      grid.length.times do |x|
+        grid[x].length.times do |y|
+          return true if grid[x][y].class == Ship
+        end
+      end
+    end
+    grid.any? { |row| row.include? value }
   end
 
   def occupied?(position)

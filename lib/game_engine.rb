@@ -32,7 +32,7 @@ class GameEngine
   end
 
   def check_win(player)
-    return false if player.opponent.ship_board.find("S")
+    return false if player.opponent.ship_board.find(Ship)
     @io.display_winner(player)
     true
   end
@@ -49,8 +49,16 @@ class GameEngine
     @io.display_shot_result(player, result)
   end
 
-  def update_opponent(player, position, value)
-    update_ship_board(player.opponent, position, value)
+  def update_opponent(player, position, result)
+    if result == "H"
+      ship = player.opponent.ship_board.get_position(position)
+      if ship.positions.length == 1
+        @io.display_sunk_ship_result(player, ship.size)
+      end
+      ship.take_damage(position)
+    end
+
+    update_ship_board(player.opponent, position, result)
   end
 
   def update_guess_board(player, position, value)
