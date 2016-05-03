@@ -17,7 +17,8 @@ while sm.current_state != :quit_state
   when "P"
     sm.set_state(:game_state)
     game = GameEngine.new(io)
-    game.start
+    game.run
+    sm.set_state(:menu_state)
   when "I"
     sm.set_state(:instructions_state)
     io.display_message(InstructionsHandler.instructions)

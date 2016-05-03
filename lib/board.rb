@@ -18,6 +18,10 @@ class Board
     grid[position[0]][position[1]] = value
   end
 
+  def get_position(position)
+    grid[position[0]][position[1]]
+  end
+
   def occupied?(position)
     return true if grid[position[0]][position[1]] != "~"
     false

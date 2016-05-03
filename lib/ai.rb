@@ -1,5 +1,3 @@
-class AI
-  def initialize(game_engine)
+class AI < Player
 
-  end
 end

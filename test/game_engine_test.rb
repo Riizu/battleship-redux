@@ -31,8 +31,4 @@ class GameEngineTest < Minitest::Test
   def test_it_is_not_running_by_default
     refute @ge.running?
   end
-
-  def test_it_can_run_a_game
-    assert_equal nil, @ge.run
-  end
 end

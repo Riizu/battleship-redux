@@ -37,4 +37,11 @@ class ShipTest < Minitest::Test
 
     assert_equal 2, @ship.positions.length
   end
+
+  def test_it_can_die
+    @ship.take_damage([0,0])
+    @ship.take_damage([0,1])
+
+    refute @ship.alive?
+  end
 end
