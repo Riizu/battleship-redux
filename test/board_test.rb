@@ -33,10 +33,43 @@ class BoardTest < Minitest::Test
                   @board.grid
   end
 
-  def test_it_can_set_a_position_on_the_grid
-    @board.set_position([0,0], "s")
+  def test_it_can_set_an_invalid_position
+    result = @board.set_position([4,4], "s")
 
-    assert_equal "s", @board.grid[0][0]
+    assert_equal nil, result
+  end
+
+  def test_it_can_get_a_position
+    result = @board.get_position([0,0])
+
+    assert_equal "~", result
+  end
+
+  def test_it_can_getting_an_invalid_position
+    result = @board.get_position([4,4])
+
+    assert_equal nil, result
+  end
+
+  def test_it_can_find_an_existing_value
+    assert @board.find("~")
+  end
+
+  def test_it_cant_find_a_non_existant_value
+    refute @board.find("y")
+  end
+
+  def test_it_can_find_a_ship
+    @board.set_position([0,0], Ship.new({size: 2, positions: [[0,0],[0,1]]}))
+
+    assert @board.find(Ship)
+  end
+
+  def test_it_can_get_a_position_that_has_a_value_other_than_default
+    @board.set_position([0,0], "s")
+    result = @board.get_position([0,0])
+
+    assert_equal "s", result
   end
 
   def test_it_can_check_if_a_given_position_is_not_occupied

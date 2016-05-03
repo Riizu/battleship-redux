@@ -32,6 +32,17 @@ class PlayerTest < Minitest::Test
     assert_kind_of Hash, @player.ships
   end
 
+  def test_it_doesnt_have_an_opponent_by_default
+    refute @player.opponent
+  end
+
+  def test_it_can_set_an_opponent
+    @player.set_opponent("test")
+
+    assert @player.opponent
+    assert_equal "test", @player.opponent
+  end
+
   def test_it_can_generate_ships
     skip #skipped due to necessity to enter input
     @player.generate_ships(2)
@@ -49,7 +60,7 @@ class PlayerTest < Minitest::Test
     ship_data = {size: 2, positions: [[0,1],[0,2]]}
     @player.place_ship(Ship.new(ship_data))
 
-    assert_equal "S", @player.ship_board.grid[0][1]
-    assert_equal "S", @player.ship_board.grid[0][2]
+    assert_kind_of Ship, @player.ship_board.grid[0][1]
+    assert_kind_of Ship, @player.ship_board.grid[0][2]
   end
 end

@@ -4,7 +4,7 @@ class IOHandler
   end
 
   def prompt
-    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?\n"
+    puts "\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?\n"
     print "> "
   end
 

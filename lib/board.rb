@@ -15,6 +15,7 @@ class Board
   end
 
   def set_position(position, value)
+    return nil if out_of_bounds?(position)
     if grid[position[0]][position[1]] == "~" || \
       grid[position[0]][position[1]].class == Ship
 
@@ -23,6 +24,7 @@ class Board
   end
 
   def get_position(position)
+    return nil if out_of_bounds?(position)
     grid[position[0]][position[1]]
   end
 
