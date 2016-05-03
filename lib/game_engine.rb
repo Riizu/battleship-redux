@@ -45,10 +45,6 @@ class GameEngine
     @io.get_shot_position
   end
 
-  def display_message(string)
-    @io.display_message(string)
-  end
-
   def display_shot_result(player, result)
     @io.display_shot_result(player, result)
   end

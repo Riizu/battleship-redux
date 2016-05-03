@@ -17,7 +17,7 @@ class Board
   def set_position(position, value)
     if grid[position[0]][position[1]] == "~" || \
       grid[position[0]][position[1]] == "S"
-      
+
       grid[position[0]][position[1]] = value
     end
   end
@@ -46,13 +46,14 @@ class Board
   end
 
   def adjacent?(position_a, position_b)
-    if position_a[1] == position_b[1]+1
+    return false if position_a == position_b
+    if position_a[1] == position_b[1]+1 && position_a[0] == position_b[0]
       true
-    elsif position_a[0] == position_b[0]+1
+    elsif position_a[0] == position_b[0]+1 && position_a[1] == position_b[1]
       true
-    elsif position_a[0] == position_b[0]-1
+    elsif position_a[0] == position_b[0]-1 && position_a[1] == position_b[1]
       true
-    elsif position_a[1] == position_b[1]-1
+    elsif position_a[1] == position_b[1]-1 && position_a[0] == position_b[0]
       true
     else
       false
@@ -60,6 +61,8 @@ class Board
   end
 
   def valid_positions?(positions)
+    return false if positions.uniq.length != positions.length
+
     positions.length.times do |i|
       return false if out_of_bounds?(positions[i])
       return false if occupied?(positions[i])
@@ -69,41 +72,5 @@ class Board
       return true if positions[i+1].nil?
       return false if !adjacent?(positions[i], positions[i+1])
     end
-  end
-
-  def check_left(position, size)
-    positions = []
-    positions << position
-    size.times do |i|
-      positions << [position[0]-(i+1),position[1]]
-    end
-    return positions if valid_positions?(positions)
-  end
-
-  def check_right(position, size)
-    positions = []
-    positions << position
-    size.times do |i|
-      positions << [position[0]+(i+1),position[1]]
-    end
-    return positions if valid_positions?(positions)
-  end
-
-  def check_down(position, size)
-    positions = []
-    positions << position
-    size.times do |i|
-      positions << [position[0],position[1]+(i+1)]
-    end
-    return positions if valid_positions?(positions)
-  end
-
-  def check_up(position, size)
-    positions = []
-    positions << position
-    size.times do |i|
-      positions << [position[0],position[1]-(i+1)]
-    end
-    return positions if valid_positions?(positions)
   end
 end
