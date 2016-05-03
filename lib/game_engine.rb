@@ -8,11 +8,14 @@ class GameEngine
     @io = io_handler
     @player_1 = Player.new(self)
     @player_2 = AI.new(self)
+    @start_time = nil
   end
 
   def run
     @running = true
+    @start_time = Time.now
     setup
+
     loop do
       @io.display_grid(player_1.guess_board.grid)
       @io.display_grid(player_1.ship_board.grid)
@@ -33,7 +36,8 @@ class GameEngine
 
   def check_win(player)
     return false if player.opponent.ship_board.find(Ship)
-    @io.display_winner(player)
+    final_time = Time.now - @start_time
+    @io.display_winner(player, final_time)
     true
   end
 

@@ -35,8 +35,9 @@ class IOHandler
     puts "You sunk a #{size}-unit ship!" if player.class == Player
   end
 
-  def display_winner(player)
-    puts "#{player.class.name} has won! They took #{player.num_shots} shots.\n"
+  def display_winner(player,final_time)
+    puts "#{player.class.name} has won! They took #{player.num_shots} shots." +
+         "\nThe game took #{final_time.round(2).to_s} seconds."
   end
 
   def display_grid(grid)
