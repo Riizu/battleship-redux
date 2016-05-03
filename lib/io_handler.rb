@@ -18,10 +18,14 @@ class IOHandler
   end
 
   def display_start_game_message
-    puts "I have laid out my ships on the grid.\n" +
+    puts "\nI have laid out my ships on the grid.\n" +
          "You now need to layout your two ships.\n" +
          "The first is two units long and the second is three units long.\n" +
-         "The grid has A1 at the top left and D4 at the bottom right.\n\n"
+         "The grid has A1 at the top left and D4 at the bottom right.\n"
+  end
+
+  def display_winner(player)
+    puts "#{player.class.name} has won! They took #{player.num_shots} shots.\n"
   end
 
   def display_grid(grid)
@@ -38,14 +42,14 @@ class IOHandler
   end
 
   def get_ship_positions(size)
-    puts "\nEnter the squares for the #{size}-unit ship: "
+    print "\nEnter the squares for the #{size}-unit ship: "
     input = gets.chomp
     input_array = input.split(" ")
     sanitize_input_into_array_indices(input_array)
   end
 
   def get_shot_position
-    puts "\nEnter a target: "
+    print "\nEnter a target: "
     input = gets.chomp
     sanitize_input_into_array_indices([input])[0]
   end

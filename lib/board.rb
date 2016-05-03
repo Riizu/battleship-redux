@@ -22,6 +22,10 @@ class Board
     grid[position[0]][position[1]]
   end
 
+  def find(value)
+     grid.any? { |row| row.include? "S" }
+  end
+
   def occupied?(position)
     return true if grid[position[0]][position[1]] != "~"
     false

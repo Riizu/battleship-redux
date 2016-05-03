@@ -8,38 +8,33 @@ class GameEngine
     @io = io_handler
     @player_1 = Player.new(self)
     @player_2 = AI.new(self)
-    @running = false
-  end
-
-  def running?
-    return true if @running == true
-    false
   end
 
   def run
     @running = true
-
-    player_1.set_opponent(player_2)
-    player_2.set_opponent(player_1)
-
-    player_2.generate_ships(2)
-    @io.display_start_game_message
-    player_1.generate_ships(2)
-
-    while running?
+    setup
+    loop do
       @io.display_grid(player_1.guess_board.grid)
       @io.display_grid(player_1.ship_board.grid)
       player_1.take_turn
-      @io.display_grid(player_1.guess_board.grid)
-      @io.display_grid(player_1.ship_board.grid)
-      #check win
-
+      break if check_win(player_1)
       player_2.take_turn
-      @io.display_grid(player_1.guess_board.grid)
-      @io.display_grid(player_1.ship_board.grid)
-      #check win
-      @running = false
+      break if check_win(player_2)
     end
+  end
+
+  def setup
+    player_1.set_opponent(player_2)
+    player_2.set_opponent(player_1)
+    player_2.generate_ships(2)
+    @io.display_start_game_message
+    player_1.generate_ships(2)
+  end
+
+  def check_win(player)
+    return false if player.opponent.ship_board.find("S")
+    @io.display_winner(player)
+    true
   end
 
   def get_ship_positions(size)
@@ -52,6 +47,11 @@ class GameEngine
 
   def display_message(string)
     @io.display_message(string)
+  end
+
+  def update_opponent(player, position, value)
+    update_ship_board(player.opponent, position, value) if value == "H"
+    update_guess_board(player.opponent, position, value)
   end
 
   def update_guess_board(player, position, value)

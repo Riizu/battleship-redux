@@ -27,8 +27,4 @@ class GameEngineTest < Minitest::Test
   def test_its_player_two_is_an_AI_by_default
     assert_kind_of AI, @ge.player_2
   end
-
-  def test_it_is_not_running_by_default
-    refute @ge.running?
-  end
 end

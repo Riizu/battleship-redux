@@ -2,7 +2,7 @@ require_relative 'ship'
 require_relative 'board'
 
 class Player
-  attr_reader :num_shots, :ships, :ship_board, :guess_board, :ge
+  attr_reader :opponent, :num_shots, :ships, :ship_board, :guess_board, :ge
 
   def initialize(game_engine)
     @ge = game_engine
@@ -47,13 +47,14 @@ class Player
   def take_turn
     shot_position = @ge.get_shot_position
     result = fire_shot(shot_position)
-    @ge.update_guess_board(@opponent, shot_position, "H") if result == :hit
-    @ge.update_ship_board(@opponent, shot_position, "H") if result == :hit
-    @ge.update_guess_board(@opponent, shot_position, "M") if result == :miss
-    guess_board.set_position(shot_position, "H") if result == :hit
-    guess_board.set_position(shot_position, "M") if result == :miss
-    formatted_result = "It's a #{result.to_s}!"
+    formatted_result = "It's a #{result}!"
     @ge.display_message(formatted_result)
+    @ge.update_opponent(self, shot_position, result.to_s[0].capitalize)
+    update_self(shot_position, result.to_s[0].capitalize)
+  end
+
+  def update_self(position, result)
+    guess_board.set_position(position, result)
   end
 
   def fire_shot(position)
