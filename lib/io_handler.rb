@@ -24,15 +24,20 @@ class IOHandler
          "The grid has A1 at the top left and D4 at the bottom right.\n"
   end
 
+  def display_shot_result(player, result)
+    puts "\n#{player.class.name} #{result}!\n"
+  end
+
   def display_winner(player)
     puts "#{player.class.name} has won! They took #{player.num_shots} shots.\n"
   end
 
   def display_grid(grid)
-    puts "\n    A B C D\n"
+    letters = ["A", "B", "C", "D"]
+    puts "\n    1 2 3 4\n"
     puts "-------------"
     grid.length.times do |x|
-      print "#{x+1} | "
+      print "#{letters[x]} | "
       grid[0].length.times do |y|
         print "#{grid[x][y]} "
       end

@@ -15,7 +15,11 @@ class Board
   end
 
   def set_position(position, value)
-    grid[position[0]][position[1]] = value
+    if grid[position[0]][position[1]] == "~" || \
+      grid[position[0]][position[1]] == "S"
+      
+      grid[position[0]][position[1]] = value
+    end
   end
 
   def get_position(position)
@@ -23,7 +27,7 @@ class Board
   end
 
   def find(value)
-     grid.any? { |row| row.include? "S" }
+    grid.any? { |row| row.include? "S" }
   end
 
   def occupied?(position)
@@ -65,5 +69,41 @@ class Board
       return true if positions[i+1].nil?
       return false if !adjacent?(positions[i], positions[i+1])
     end
+  end
+
+  def check_left(position, size)
+    positions = []
+    positions << position
+    size.times do |i|
+      positions << [position[0]-(i+1),position[1]]
+    end
+    return positions if valid_positions?(positions)
+  end
+
+  def check_right(position, size)
+    positions = []
+    positions << position
+    size.times do |i|
+      positions << [position[0]+(i+1),position[1]]
+    end
+    return positions if valid_positions?(positions)
+  end
+
+  def check_down(position, size)
+    positions = []
+    positions << position
+    size.times do |i|
+      positions << [position[0],position[1]+(i+1)]
+    end
+    return positions if valid_positions?(positions)
+  end
+
+  def check_up(position, size)
+    positions = []
+    positions << position
+    size.times do |i|
+      positions << [position[0],position[1]-(i+1)]
+    end
+    return positions if valid_positions?(positions)
   end
 end

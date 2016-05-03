@@ -49,9 +49,12 @@ class GameEngine
     @io.display_message(string)
   end
 
+  def display_shot_result(player, result)
+    @io.display_shot_result(player, result)
+  end
+
   def update_opponent(player, position, value)
-    update_ship_board(player.opponent, position, value) if value == "H"
-    update_guess_board(player.opponent, position, value)
+    update_ship_board(player.opponent, position, value)
   end
 
   def update_guess_board(player, position, value)

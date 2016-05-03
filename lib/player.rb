@@ -45,16 +45,19 @@ class Player
   end
 
   def take_turn
-    shot_position = @ge.get_shot_position
+    shot_position = get_shot_position
     result = fire_shot(shot_position)
-    formatted_result = "It's a #{result}!"
-    @ge.display_message(formatted_result)
-    @ge.update_opponent(self, shot_position, result.to_s[0].capitalize)
+    @ge.display_shot_result(self, result)
     update_self(shot_position, result.to_s[0].capitalize)
+    @ge.update_opponent(self, shot_position, result.to_s[0].capitalize)
   end
 
   def update_self(position, result)
     guess_board.set_position(position, result)
+  end
+
+  def get_shot_position
+    @ge.get_shot_position
   end
 
   def fire_shot(position)
