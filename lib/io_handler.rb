@@ -28,6 +28,11 @@ class IOHandler
     puts "\n#{player.class.name} #{result}!\n"
   end
 
+  def display_sunk_ship_result(player, size)
+    puts "Your #{size}-unit ship was sunk!" if player.class == AI
+    puts "You sunk a #{size}-unit ship!" if player.class == Player
+  end
+
   def display_winner(player)
     puts "#{player.class.name} has won! They took #{player.num_shots} shots.\n"
   end
@@ -39,7 +44,11 @@ class IOHandler
     grid.length.times do |x|
       print "#{letters[x]} | "
       grid[0].length.times do |y|
-        print "#{grid[x][y]} "
+        if grid[x][y].class == Ship
+          print "S "
+        else
+          print "#{grid[x][y]} "
+        end
       end
       print "|\n"
     end

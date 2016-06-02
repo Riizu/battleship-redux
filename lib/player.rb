@@ -41,7 +41,7 @@ class Player
   end
 
   def place_ship(ship)
-    ship.size.times { |i| ship_board.set_position(ship.positions[i], "S") }
+    ship.size.times { |i| ship_board.set_position(ship.positions[i], ship) }
   end
 
   def take_turn
@@ -62,7 +62,7 @@ class Player
 
   def fire_shot(position)
     @num_shots += 1
-    return :hit if @opponent.ship_board.get_position(position) == "S"
+    return :hit if @opponent.ship_board.get_position(position).class == Ship
     :miss
   end
 end
